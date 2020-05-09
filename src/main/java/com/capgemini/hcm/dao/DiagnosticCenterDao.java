@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.capgemini.hcm.entity.DiagnosticCenter;
 
-public interface CenterRepo extends JpaRepository<DiagnosticCenter, String>{
+public interface DiagnosticCenterDao extends JpaRepository<DiagnosticCenter, Integer>{
+
+	
 
 
 }

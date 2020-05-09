@@ -1,14 +1,10 @@
 package com.capgemini.hcm.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,8 +19,6 @@ public class Tests {
 
 	@Column(name = "testName")
 	private String testName;
-
-	
 
 	public Integer getTestId() {
 		return testId;
@@ -42,8 +36,6 @@ public class Tests {
 		this.testName = testName;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Tests [testId=" + testId + ", testName=" + testName + "]";
@@ -53,7 +45,7 @@ public class Tests {
 		super();
 		this.testId = testId;
 		this.testName = testName;
-		
+
 	}
 
 	public Tests() {
@@ -61,5 +53,4 @@ public class Tests {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 }

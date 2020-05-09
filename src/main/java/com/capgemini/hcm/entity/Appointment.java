@@ -2,6 +2,7 @@ package com.capgemini.hcm.entity;
 
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -25,11 +25,11 @@ public class Appointment {
 	@Column(name = "appointment_Id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_seq")
 	@SequenceGenerator(sequenceName = "appointment_seq", initialValue=1000,allocationSize = 1, name = "appointment_seq")
-	private Long appointmentId;
+	private Integer appointmentId;
 
 	@Column(name = "Appointment_DateAndTime")
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date appointmentDate=new Date();
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime appointmentDateAndTime;
 
 	@Column(name = "approved")
 	private boolean approved;
@@ -38,20 +38,22 @@ public class Appointment {
 	@JoinColumn(name = "user_Id", referencedColumnName = "user_Id")
 	private Users users;
 
-	public Long getAppointmentId() {
+	public Integer getAppointmentId() {
 		return appointmentId;
 	}
 
-	public void setAppointmentId(Long appointmentId) {
+	public void setAppointmentId(Integer appointmentId) {
 		this.appointmentId = appointmentId;
 	}
 
-	public Date getAppointmentDate() {
-		return appointmentDate;
+	
+
+	public LocalDateTime getDateAndtime() {
+		return appointmentDateAndTime;
 	}
 
-	public void setAppointmentDate(Date appointmentDate) {
-		this.appointmentDate = appointmentDate;
+	public void setDateAndtime(LocalDateTime dateAndtime) {
+		this.appointmentDateAndTime = appointmentDateAndTime;
 	}
 
 	public boolean isApproved() {
@@ -70,16 +72,10 @@ public class Appointment {
 		this.users = users;
 	}
 
-	@Override
-	public String toString() {
-		return "Appointment [appointmentId=" + appointmentId + ", appointmentDate=" + appointmentDate + ", approved="
-				+ approved + ", users=" + users + "]";
-	}
-
-	public Appointment(Long appointmentId, Date appointmentDate, boolean approved, Users users) {
+	public Appointment(Integer appointmentId, LocalDateTime appointmentDateAndTime, boolean approved, Users users) {
 		super();
 		this.appointmentId = appointmentId;
-		this.appointmentDate = appointmentDate;
+		this.appointmentDateAndTime = appointmentDateAndTime;
 		this.approved = approved;
 		this.users = users;
 	}
@@ -89,7 +85,11 @@ public class Appointment {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "Appointment [appointmentId=" + appointmentId + ", appointmentDateAndTime=" + appointmentDateAndTime + ", approved="
+				+ approved + ", users=" + users + "]";
+	}
+
 	
 }
