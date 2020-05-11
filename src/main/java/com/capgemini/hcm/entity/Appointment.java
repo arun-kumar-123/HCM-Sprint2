@@ -46,13 +46,11 @@ public class Appointment {
 		this.appointmentId = appointmentId;
 	}
 
-	
-
-	public LocalDateTime getDateAndtime() {
+	public LocalDateTime getAppointmentDateAndTime() {
 		return appointmentDateAndTime;
 	}
 
-	public void setDateAndtime(LocalDateTime dateAndtime) {
+	public void setAppointmentDateAndTime(LocalDateTime appointmentDateAndTime) {
 		this.appointmentDateAndTime = appointmentDateAndTime;
 	}
 
@@ -72,6 +70,12 @@ public class Appointment {
 		this.users = users;
 	}
 
+	@Override
+	public String toString() {
+		return "Appointment [appointmentId=" + appointmentId + ", appointmentDateAndTime=" + appointmentDateAndTime
+				+ ", approved=" + approved + ", users=" + users + "]";
+	}
+
 	public Appointment(Integer appointmentId, LocalDateTime appointmentDateAndTime, boolean approved, Users users) {
 		super();
 		this.appointmentId = appointmentId;
@@ -85,11 +89,7 @@ public class Appointment {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String toString() {
-		return "Appointment [appointmentId=" + appointmentId + ", appointmentDateAndTime=" + appointmentDateAndTime + ", approved="
-				+ approved + ", users=" + users + "]";
-	}
+	
 
 	
 }

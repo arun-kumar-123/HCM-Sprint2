@@ -1,5 +1,7 @@
 package com.capgemini.hcm.entity;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,9 +25,8 @@ public class Doctor {
 	private String doctorName;
 
 	@NotNull(message = "contact must be mandatory")
-	@Size(max = 10, message = "number must be of 10 digit")
 	@Column(name = "doctor_contact")
-	private Integer contactNumber;
+	private BigInteger contactNumber;
 
 	@NotEmpty(message = "doctorSpecialization is mandatory")
 	@Column(name = "doctor_Specialization")
@@ -47,11 +48,11 @@ public class Doctor {
 		this.doctorName = doctorName;
 	}
 
-	public Integer getContactNumber() {
+	public BigInteger getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(Integer contactNumber) {
+	public void setContactNumber(BigInteger contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 
@@ -65,7 +66,7 @@ public class Doctor {
 
 
 	public Doctor(Integer doctorId, @NotEmpty(message = "name is mandatory") String doctorName,
-			@NotNull(message = "contact must be mandatory") @Size(max = 10, message = "number must be of 10 digit") Integer contactNumber,
+			@NotNull(message = "contact must be mandatory") @Size(max = 10, message = "number must be of 10 digit") BigInteger contactNumber,
 			@NotEmpty(message = "doctorSpecialization is mandatory") String doctorSpecialization) {
 		super();
 		this.doctorId = doctorId;
@@ -86,3 +87,4 @@ public class Doctor {
 	}
 
 }
+
