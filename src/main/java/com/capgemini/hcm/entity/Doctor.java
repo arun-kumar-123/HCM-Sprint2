@@ -1,13 +1,10 @@
 package com.capgemini.hcm.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -33,10 +30,6 @@ public class Doctor {
 	@NotEmpty(message = "doctorSpecialization is mandatory")
 	@Column(name = "doctor_Specialization")
 	private String doctorSpecialization;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "test_Id", referencedColumnName = "test_Id")
-	private Tests tests;
 
 	public Integer getDoctorId() {
 		return doctorId;
@@ -70,23 +63,15 @@ public class Doctor {
 		this.doctorSpecialization = doctorSpecialization;
 	}
 
-	public Tests getTests() {
-		return tests;
-	}
-
-	public void setTests(Tests tests) {
-		this.tests = tests;
-	}
 
 	public Doctor(Integer doctorId, @NotEmpty(message = "name is mandatory") String doctorName,
 			@NotNull(message = "contact must be mandatory") @Size(max = 10, message = "number must be of 10 digit") Integer contactNumber,
-			@NotEmpty(message = "doctorSpecialization is mandatory") String doctorSpecialization, Tests tests) {
+			@NotEmpty(message = "doctorSpecialization is mandatory") String doctorSpecialization) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;
 		this.contactNumber = contactNumber;
 		this.doctorSpecialization = doctorSpecialization;
-		this.tests = tests;
 	}
 
 	public Doctor() {
@@ -97,7 +82,7 @@ public class Doctor {
 	@Override
 	public String toString() {
 		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", contactNumber=" + contactNumber
-				+ ", doctorSpecialization=" + doctorSpecialization + ", tests=" + tests + "]";
+				+ ", doctorSpecialization=" + doctorSpecialization + "]";
 	}
 
 }
