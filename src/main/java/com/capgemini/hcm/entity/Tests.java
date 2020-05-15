@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "Test_table")
@@ -24,69 +25,41 @@ public class Tests {
 	private Integer testId;
 
 	@Column(name = "testName")
+	//@Pattern(regexp = "^[a-zA-Z]",message="Test name should be in alphabet")
 	private String testName;
-	
-	@OneToMany(fetch=FetchType.EAGER,targetEntity=Doctor.class, cascade= CascadeType.ALL)
-	@JoinColumn(name="test_Id", referencedColumnName ="test_Id")
-	private List<Doctor> doctorlist;
-
-	
 
 	public Integer getTestId() {
 		return testId;
 	}
 
-
-
 	public void setTestId(Integer testId) {
 		this.testId = testId;
 	}
-
-
 
 	public String getTestName() {
 		return testName;
 	}
 
-
-
 	public void setTestName(String testName) {
 		this.testName = testName;
 	}
 
-
-
-	public List<Doctor> getDoctorlist() {
-		return doctorlist;
-	}
-
-
-
-	public void setDoctorlist(List<Doctor> doctorlist) {
-		this.doctorlist = doctorlist;
-	}
-
-
-
 	@Override
 	public String toString() {
-		return "Tests [testId=" + testId + ", testName=" + testName + ", doctorlist=" + doctorlist + "]";
+		return "Tests [testId=" + testId + ", testName=" + testName + "]";
 	}
 
-
-
-	public Tests(Integer testId, String testName, List<Doctor> doctorlist) {
+	public Tests(Integer testId,
+			@Pattern(regexp = "^[a-zA-Z]", message = "Test name should be in alphabet") String testName) {
 		super();
 		this.testId = testId;
 		this.testName = testName;
-		this.doctorlist = doctorlist;
 	}
-
-
 
 	public Tests() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
 }

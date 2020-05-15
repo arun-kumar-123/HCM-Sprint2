@@ -11,35 +11,38 @@ import com.capgemini.hcm.dao.DiagnosticCenterDao;
 import com.capgemini.hcm.entity.DiagnosticCenter;
 import com.capgemini.hcm.entity.Tests;
 
+@Transactional
 @Service
 public class DiagnosticCenterService {
+	
 	
 	@Autowired
 	private DiagnosticCenterDao diagnosticCenterDao;
 	
-	@Transactional
+	
 	public boolean addcenter(DiagnosticCenter diagnosticcenter)
 	{
 		return diagnosticCenterDao.save(diagnosticcenter) != null;
 	}
 	
-	@Transactional
+	
 	public List<DiagnosticCenter> listallcenter()
 	{
 		return diagnosticCenterDao.findAll();
 	}
 	
-	@Transactional
+	
 	
 	public void deletecenter( Integer centerId)
 	{
 		diagnosticCenterDao.deleteById(centerId);
 	}
 	
-	@Transactional
-	public DiagnosticCenter updatecenter(DiagnosticCenter diagnosticcenter,Integer centerId)
+	
+	public boolean updatecenter(DiagnosticCenter diagnosticcenter,Integer centerId)
 	{
-		return diagnosticCenterDao.save(diagnosticcenter);
+		diagnosticcenter.setCenterName(diagnosticcenter.getCenterName());
+		return diagnosticCenterDao.save(diagnosticcenter) != null;
 	}
 	
 	

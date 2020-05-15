@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -27,6 +29,8 @@ public class DiagnosticCenter {
 	@SequenceGenerator(sequenceName = "center_seq", initialValue = 100, allocationSize = 1, name = "center_seq")
 	private Integer centerId;
 
+	@NotEmpty(message = "center name is mandatory")
+	//@Pattern(regexp = "^[a-zA-Z]")
 	@Column(name = "centerName")
 	private String centerName;
 
@@ -78,8 +82,9 @@ public class DiagnosticCenter {
 				+ ", appointment=" + appointment + "]";
 	}
 
-	public DiagnosticCenter(Integer centerId, String centerName, List<Tests> listOftests,
-			List<Appointment> appointment) {
+	public DiagnosticCenter(Integer centerId,
+			@NotEmpty(message = "center name is mandatory") @Pattern(regexp = "^[a-zA-Z]") String centerName,
+			List<Tests> listOftests, List<Appointment> appointment) {
 		super();
 		this.centerId = centerId;
 		this.centerName = centerName;
@@ -92,4 +97,6 @@ public class DiagnosticCenter {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
 }

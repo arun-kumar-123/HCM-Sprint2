@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.hcm.entity.DiagnosticCenter;
 import com.capgemini.hcm.exception.CenterException;
 import com.capgemini.hcm.service.DiagnosticCenterService;
-
+@CrossOrigin(origins="http://localhost:4200") 
 @RestController
 public class DiagnosticCenterController {
 
@@ -61,7 +61,7 @@ public class DiagnosticCenterController {
 	
 	@CrossOrigin
 	@DeleteMapping("/deletecenter/{id}")
-	public ResponseEntity deletecenter(@Valid @RequestParam Integer centerId) throws CenterException
+	public ResponseEntity<String> deletecenter(@Valid @RequestParam Integer centerId) throws CenterException
 	{
 		try
 		{
@@ -75,7 +75,7 @@ public class DiagnosticCenterController {
 	
 	@CrossOrigin
 	@PutMapping("/updatecenter/{id}")
-	public ResponseEntity updatecenter(@Valid @RequestBody DiagnosticCenter diagnosticcenter, @RequestParam Integer centerId,BindingResult br)throws CenterException
+	public ResponseEntity<String> updatecenter(@Valid @RequestBody DiagnosticCenter diagnosticcenter, @RequestParam Integer centerId,BindingResult br)throws CenterException
 	{
 		String err = "";
 		if (br.hasErrors()) {
